@@ -1,0 +1,26 @@
+= form_for @crime do |f|
+  = f.label :address
+  = f.text_field :address
+  %br
+  = label_tag :offence
+  = text_field_tag :offence
+  %br
+  = submit_tag :submit, {:class => 'button'}
+
+:javascript
+  $('input#offence').autocomplete('/offenses/autocomplete_name.json', {
+    dataType: 'json',
+    parse: function (data) {
+      console.log(data)
+      return $.map(data, function (row) {
+        return { data: row.name, value: row.name, result: row.name }
+      })
+    },
+    formatItem: function (row) {
+      return format(row);
+    }
+  });
+  function format (row) {
+    // do some formatting
+    return row;
+  }

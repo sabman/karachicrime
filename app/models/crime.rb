@@ -1,12 +1,14 @@
 class Crime
   include MongoMapper::Document
-  plugin GeoSpatial        
+  plugin GeoSpatial
   
   key :case_id, Integer, :required => true
   key :reported_at, Time, :required => true
   key :district, Integer
   key :precinct, String
   key :address, String
+  key :union_council, String
+  key :neighborhood, String
   key :loc, Hash, :default => {'lat' => 0, 'lon' => 0}
   key :code, String
   timestamps!

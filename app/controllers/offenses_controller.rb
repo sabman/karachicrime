@@ -23,4 +23,12 @@ class OffensesController < ApplicationController
       end
     end
   end
+
+  def autocomplete_name
+    q = /^.*#{params[:q]}.*$/i
+    @offenses = Offense.all(:conditions => {:name => q})
+    respond_to do |wants|
+      wants.json { render :json => @offenses }
+    end
+  end
 end

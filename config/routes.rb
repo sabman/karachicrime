@@ -2,8 +2,11 @@ Pdxpatrol::Application.routes.draw do
   resources :neighborhoods do
     resource :crimes
   end
-  
-  resources :offenses
+  resource :crimes, :only => [:new, :create]
+
+  resources :offenses do
+    get :autocomplete_name, :on => :collection
+  end
 
   get '/trends', :to => 'trends#index'
   # The priority is based upon order of creation:

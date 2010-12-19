@@ -16,8 +16,13 @@ gem 'closure-compiler'
 gem 'proj4rb', :git => 'git://github.com/Caged/proj4rb.git', :branch => 'ruby19'
 gem 'whenever', :require => false
 gem 'mongo_geo', :git => 'https://github.com/parrish/mongo_geo.git'
+gem 'haml'
   
 group :development, :test do
+  # gem 'wikipedia-client'
+  # gem 'kschrader-wikipedia-api'
+  gem 'hpricot'
+  gem 'geonames'
   gem 'factory_girl_rails'
   gem 'rspec', '2.1.0'
   gem 'rspec-rails', '2.1.0'

@@ -3,8 +3,51 @@
 
 require 'name_map'
 require 'csv'
+require 'pp'
+require 'geonames'
 
 namespace :migrations do
+  desc 'Load the names of Karachi neighbourhoods'
+  task :karachi_neighborhood_names => :environment do
+    require "#{Rails.root}/vendor/plugins/wikipedia-client/lib/wikipedia"
+
+    nhoods = CSV.read('db/data/karachi_neighbourhoods.txt', :headers => true)
+    nhoods.each do |row|
+      puts "------------------------------------------------------------"
+
+      wikipedia_pageid = {}
+      wikipage = Wikipedia.find(row['name'], :prop => 'info')
+      if wikipage.title
+        puts "Found a wikipedia page: #{wikipage.title}"
+        wikipedia_pageid = {:wikipedia_pageid => wikipage.page['pageid']}
+      end
+
+      results = JSON.parse(open("http://ws.geonames.org/searchJSON?q=#{CGI::escape(row['name'])}&maxRows=10").read)
+
+      loc = {}
+      if results['geonames'].any?
+        results['geonames'].each do |gn|
+          if gn['adminName1'] =~ /sindh/i
+            loc = {:loc => {:lon => gn['lng'], :lat => gn['lat'] }}
+            puts "Found a geonames entry: #{gn['name']}" if loc.any?
+            break
+          end
+        end
+      end
+
+      attrs = {:name => row['name'].titlecase, :permalink => row['name'].parameterize}
+                .merge(loc)
+                .merge(wikipedia_pageid)
+      pp attrs
+
+      n = Neighborhood.first_or_new(:name => row['name'].titlecase)
+      n.update_attributes(attrs)
+
+      puts "saving #{n.name}..." ; n.save!
+      puts "------------------------------------------------------------"
+    end
+  end
+
   desc 'Convert neighborhood names to normalized names and add geo data'
   task :one_normalize_neighborhood_names => :environment do
     nhoods = JSON.parse(File.read(File.join(Rails.root, 'db', 'data', 'neighborhoods.json')))

@@ -28,4 +28,8 @@ class CrimesController < ApplicationController
       render :geojson => crimes
     end
   end
+
+  def new
+    @crime = Crime.new
+  end
 end
