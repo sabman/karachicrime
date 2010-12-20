@@ -2,8 +2,45 @@ require 'pathname'
 require 'pp'
 require 'csv'
 require 'name_map'
+require "#{Rails.root}/lib/time"
 
 namespace :crime do
+
+  namespace :karachi do
+
+    desc 'Create fake crime data for Karachi'
+    task :fake => :environment do
+      # use the existing neighbourhoods as bases for geocoding
+      puts "make sure you have migrated neighbourhoods: rake migrations:karachi_neighborhood_names"
+      offenses = Offense.all
+      Neighborhood.all.each do |n| ## 
+        # pp n.attributes
+        noise = lambda{rand*0.00001 * [1,-1][rand(2)]}
+        pp n.loc
+        unless(n.loc['lat']==0)
+          2.times do
+            o = offenses[rand(offenses.size)]
+            attrs = { 
+              'loc' => {
+                'lat' => n.loc['lat']+noise.call,
+                'lon' => n.loc['lon']+noise.call },
+              'neighborhood' => n,
+              'offense'      => o,
+              'code'         => o.code,
+              'reported_at'  => Time.random
+            }
+
+            c = Crime.new(attrs)
+            # pp c.attributes
+            c.save
+            pp c.attributes
+          end
+        end
+      end
+    end # task
+
+  end
+  
   namespace :reports do
     desc 'Run Weekly Crime Totals For last year & this year'
     task :weekly_crime_totals => :environment do

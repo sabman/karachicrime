@@ -7,7 +7,7 @@ class CrimesController < ApplicationController
         @offenses = Offense.sort([['type.order', 1], ['order', 1]]).all.group_by(&:type)
       end
       wants.geojson do
-        @crimes = Crime.in_the_past(7.days).all
+        @crimes = Crime.in_the_past(30.days).all
         logger.info "Found #{@crimes.count} crimes"
         render :geojson => @crimes
       end

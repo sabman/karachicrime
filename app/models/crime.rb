@@ -2,18 +2,17 @@ class Crime
   include MongoMapper::Document
   plugin GeoSpatial
   
-  key :case_id, Integer, :required => true
+  key :case_id, Integer
   key :reported_at, Time, :required => true
   key :district, Integer
   key :precinct, String
   key :address, String
   key :union_council, String
-  key :neighborhood, String
   key :loc, Hash, :default => {'lat' => 0, 'lon' => 0}
   key :code, String
   timestamps!
   
-  belongs_to :offense      
+  belongs_to :offense
   belongs_to :neighborhood
   
   add_concerns :reporting
@@ -27,15 +26,17 @@ class Crime
   def as_geojson(options = {})
     props = attributes
     props.delete(:loc)
-    {
+    geojson = {
       :id => id.to_s,
       :type => 'Feature',
       :properties => props,
       :geometry => {
         :type => 'Point', 
-        :coordinates => [loc['lat'], loc['lon']]
+        :coordinates => [loc['lon'], loc['lat']]
       }
     }
+    logger.info(geojson.inspect)
+    geojson
   end
   
   def at_dark?

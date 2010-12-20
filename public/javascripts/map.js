@@ -44,16 +44,16 @@ $(function() {
        
        map.center({lat: ll[1], lon: ll[0]})
        map.zoom(14)
-       
-       
+
+
        if(path == 'neighborhoods-show') {
          $.getJSON(document.location.pathname + '/crimes.geojson', addDataLayer)
        }
-       
+
      } else {
        $(document).trigger('crimes.loaded', data)
      }
-     
+
      map.add(po.geoJson()
        .features(data.features)
        .on('load', load))
@@ -121,11 +121,11 @@ $(function() {
 
         $el.addSVGClass(props.code)
         $cir.addSVGClass('circle')
-        $cir.addSVGClass(props.code)      
+        $cir.addSVGClass(props.code)
         $cir[0].setAttribute("r", 12)
 
-        $el.bind('click', {props: props, geo: this.data.geometry}, onPointClick)      
-            
+        $el.bind('click', {props: props, geo: this.data.geometry}, onPointClick)
+
         text.setAttribute("text-anchor", "middle")
         text.setAttribute("dy", ".35em")
         text.appendChild(document.createTextNode(props.code))
@@ -150,14 +150,14 @@ $(function() {
     })
   
     $('#map').bind('map.togglecrimes', togglecrimes)
-    
+
       if($('#map .compass').length == 0)
         map.add(po.compass()
           .zoom('small')
           .position('top-left')
           .radius(30)
           .pan('none'))
-  }
+  } // load
   
   function renderNeighborhood(nhood) {
     var $el = $(nhood.element)
@@ -183,7 +183,7 @@ $(function() {
         })
       } else {        
         nodes.each(function() { 
-          //$(this).unbind('click', onPointClick)      
+          //$(this).unbind('click', onPointClick)
           $(this).removeSVGClass('inactive') 
         })
       }
@@ -214,13 +214,13 @@ $(function() {
             cnt = $('<div/>'),
             hdr = $('<h2/>'),
             bdy = $('<p/>')
-      
+
         // Try to reuse what's already on the page.
         var check = $('#sbar span[data-code=' + props.code + ']'),
             ctype = check.next().clone(),
             otype = check.closest('li.group').attr('data-code'),
             close = $('<span/>').addClass('close').text('*')
-      
+
         // Couldn't find the right info on the page, make a request for it.
         if(ctype.length == 0) {
           $.getJSON('/offenses/' + d.offense_id + '.json', function(data) {

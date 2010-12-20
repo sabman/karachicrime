@@ -28,7 +28,7 @@ class Neighborhood
     {
       :id => id,
       :geometry => (geo ||
-        {:geometry => { :type => 'Point', :coordinates => [lon, lat] }}
+        {:geometry => { :type => 'Point', :coordinates => [loc['lon'], loca['lat']] }}
       ),
       :properties => properties.merge(:name => name, :permalink => permalink)
     }
