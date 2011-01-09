@@ -28,7 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec', '2.1.0'
   gem 'rspec-rails', '2.1.0'
-  gem 'rails3-generators', :git => 'https://github.com/indirect/rails3-generators.git'
+  gem 'rails3-generators', :git => 'git://github.com/indirect/rails3-generators.git'
 end  
 
 group :development do
