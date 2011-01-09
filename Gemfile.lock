@@ -6,6 +6,13 @@ GIT
     proj4rb (0.3.2)
 
 GIT
+  remote: git://github.com/parrish/mongo_geo.git
+  revision: 829b59102ad818a8652d29382a247b7b9cc36ece
+  specs:
+    mongo_geo (0.2.0)
+      mongo_mapper (>= 0.8.2)
+
+GIT
   remote: http://github.com/jnunemaker/mongomapper.git
   revision: fd59b0ab068be7321f8e84b9dc12fb4fa6b8535d
   branch: rails3
@@ -20,13 +27,6 @@ GIT
   revision: fecefbf651909a2251d4790790229d262310d5ce
   specs:
     rails3-generators (0.14.0)
-
-GIT
-  remote: https://github.com/parrish/mongo_geo.git
-  revision: 829b59102ad818a8652d29382a247b7b9cc36ece
-  specs:
-    mongo_geo (0.2.0)
-      mongo_mapper (>= 0.8.2)
 
 GEM
   remote: http://rubygems.org/
