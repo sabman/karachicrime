@@ -12,4 +12,5 @@ config/deploy.rb
 config/settings/*
 config/settings.yml
 test_sms.rb
-config/initializers/twilio.rb
+vendor/bundler_gems
+tmp/

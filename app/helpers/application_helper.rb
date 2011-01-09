@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title(str)
-    @title ||= "#{str} | Portland Crime"
+    @title ||= "#{str} | Karachi Crime"
   end
   
   def keywords(*str)

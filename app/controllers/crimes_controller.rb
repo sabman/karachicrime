@@ -1,4 +1,4 @@
-class CrimesController < ApplicationController  
+class CrimesController < ApplicationController
   caches_page :index
   
   def index

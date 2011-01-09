@@ -6,6 +6,13 @@ GIT
     proj4rb (0.3.2)
 
 GIT
+  remote: git://github.com/indirect/rails3-generators.git
+  revision: 32bd41e8d27fda7beffd9cd4c6500d2882ac1759
+  specs:
+    rails3-generators (0.17.0)
+      railties (>= 3.0.0)
+
+GIT
   remote: git://github.com/parrish/mongo_geo.git
   revision: 829b59102ad818a8652d29382a247b7b9cc36ece
   specs:
@@ -21,12 +28,6 @@ GIT
       activemodel (~> 3.0.0)
       activesupport (~> 3.0.0)
       plucky (~> 0.3.6)
-
-GIT
-  remote: https://github.com/indirect/rails3-generators.git
-  revision: fecefbf651909a2251d4790790229d262310d5ce
-  specs:
-    rails3-generators (0.14.0)
 
 GEM
   remote: http://rubygems.org/

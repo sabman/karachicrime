@@ -8,7 +8,10 @@ Pdxpatrol::Application.routes.draw do
     get :autocomplete_name, :on => :collection
   end
 
-  get '/trends', :to => 'trends#index'
+  get '/trends',        :to => 'trends#index'
+  post '/sms/callback', :to => 'sms#callback'
+  get '/sms/last',      :to => 'sms#last'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
