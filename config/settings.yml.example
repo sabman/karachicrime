@@ -1,0 +1,6 @@
+twilio:
+  account_sid: supersecret-sid
+  auth_token: supersecret-token
+  sandbox:
+    number: (xxx) xxxx-xxxx
+    pin: xxxx-xxxx

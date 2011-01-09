@@ -64,6 +64,7 @@ GEM
     bson_ext (1.1.2)
     builder (2.1.2)
     closure-compiler (0.3.3)
+    crack (0.1.8)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -74,6 +75,8 @@ GEM
     geonames (0.2.2)
     haml (3.0.24)
     hpricot (0.8.3)
+    httparty (0.6.1)
+      crack (= 0.1.8)
     i18n (0.4.2)
     jammit (0.5.3)
       closure-compiler (>= 0.1.0)
@@ -105,6 +108,8 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
+    rails_config (0.2.1)
+      activesupport (~> 3.0)
     railties (3.0.3)
       actionpack (= 3.0.3)
       activesupport (= 3.0.3)
@@ -124,10 +129,16 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
+    twilio-rb (1.0beta)
+      activesupport (>= 3.0.0)
+      builder (>= 2.1.2)
+      httparty (>= 0.6.1)
+      yajl-ruby (>= 0.7.7)
     tzinfo (0.3.23)
     whenever (0.6.1)
       aaronh-chronic (>= 0.3.9)
       activesupport (>= 2.3.4)
+    yajl-ruby (0.7.8)
     yui-compressor (0.9.1)
 
 PLATFORMS
@@ -148,7 +159,9 @@ DEPENDENCIES
   proj4rb!
   rails (= 3.0.3)
   rails3-generators!
+  rails_config
   rspec (= 2.1.0)
   rspec-rails (= 2.1.0)
+  twilio-rb (= 1.0beta)
   whenever
   yui-compressor

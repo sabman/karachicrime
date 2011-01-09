@@ -17,7 +17,9 @@ gem 'proj4rb', :git => 'git://github.com/Caged/proj4rb.git', :branch => 'ruby19'
 gem 'whenever', :require => false
 gem 'mongo_geo', :git => 'https://github.com/parrish/mongo_geo.git'
 gem 'haml'
-  
+gem 'twilio-rb', '1.0beta', :require => 'twilio'
+gem 'rails_config'
+
 group :development, :test do
   # gem 'wikipedia-client'
   # gem 'kschrader-wikipedia-api'

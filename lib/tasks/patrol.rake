@@ -5,7 +5,6 @@ require 'name_map'
 require "#{Rails.root}/lib/time"
 
 namespace :crime do
-
   namespace :karachi do
 
     desc 'Create fake crime data for Karachi'
@@ -13,33 +12,29 @@ namespace :crime do
       # use the existing neighbourhoods as bases for geocoding
       puts "make sure you have migrated neighbourhoods: rake migrations:karachi_neighborhood_names"
       offenses = Offense.all
-      Neighborhood.all.each do |n| ## 
-        # pp n.attributes
+      Neighborhood.all.each do |n| ##
         noise = lambda{rand*0.00001 * [1,-1][rand(2)]}
-        pp n.loc
         unless(n.loc['lat']==0)
-          2.times do
+          10.times do
             o = offenses[rand(offenses.size)]
-            attrs = { 
+            attrs = {
               'loc' => {
                 'lat' => n.loc['lat']+noise.call,
-                'lon' => n.loc['lon']+noise.call },
+                'lon' => n.loc['lon']+noise.call 
+              },
               'neighborhood' => n,
               'offense'      => o,
               'code'         => o.code,
               'reported_at'  => Time.random
             }
-
             c = Crime.new(attrs)
-            # pp c.attributes
             c.save
-            pp c.attributes
           end
         end
       end
-    end # task
+    end # crime:karachi:fake task
 
-  end
+  end # karachi namespace
   
   namespace :reports do
     desc 'Run Weekly Crime Totals For last year & this year'
