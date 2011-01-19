@@ -19,6 +19,8 @@ gem 'mongo_geo', :git => 'git://github.com/parrish/mongo_geo.git'
 gem 'haml'
 gem 'twilio-rb', '1.0beta', :require => 'twilio'
 gem 'rails_config'
+gem 'sms_fu'
+gem 'pony'
 
 group :development, :test do
   # gem 'wikipedia-client'

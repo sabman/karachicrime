@@ -6,14 +6,14 @@ Factory.define :crime do |c|
   c.sequence(:case_id) {|i| 10000000 + i }
   c.district 690
   c.reported_at  'Sun, 26 Sep 2010 01:30:00 PDT -07:00'
-  c.precinct  'PORTLAND PREC NO'
-  c.address  'NE HOLLADAY ST and NE 1ST AVE, PORTLAND, OR 97232'
+  c.precinct  'KARACHI PREC NO'
+  c.address  ''
   c.loc 'lat' => -122.6647148823268, 'lon' => 45.530095588454486
   c.code  'si'
 end
 
 Factory.define :neighborhood do |n|
-  n.sequence(:name) {|i| "Portland #{i}" }
+  n.sequence(:name) {|i| "Karachi #{i}" }
   n.permalink {|n| "#{n.name.parameterize}" }
   n.portland true
   n.geo 'type' => 'Polygon', 'coordinates' => []

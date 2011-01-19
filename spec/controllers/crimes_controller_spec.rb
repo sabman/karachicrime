@@ -28,4 +28,11 @@ describe CrimesController do
       response.should be_success
     end
   end
+
+  context "new" do
+    it "should render a new crime report form" do
+      get :new
+      response.should be_success
+    end
+  end
 end

@@ -11,37 +11,37 @@
   <div class="box txt">
     <h1>Yearly Comparison</h1>
     <% if @this_year_trends.nil? || @last_year_trends.nil? %>
-    <p>It appears neighborhood statistical trends haven't been run yet.</p>
+      <p>It appears neighborhood statistical trends haven't been run yet.</p>
     <% else %>
-    <table class="comparison">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th><%= @this_year_start.year %></th>
-          <th><%= @last_year_start.year %></th>
-          <th>+/-</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @offenses.each do |type, offenses| %>
-        <% offenses.each do |offense| %>
-        <% this_year = @this_year_trends['value'][offense.id.to_s] %>
-        <% last_year = @last_year_trends['value'][offense.id.to_s] %>
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th><%= @this_year_start.year %></th>
+            <th><%= @last_year_start.year %></th>
+            <th>+/-</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @offenses.each do |type, offenses| %>
+          <% offenses.each do |offense| %>
+          <% this_year = @this_year_trends['value'][offense.id.to_s] %>
+          <% last_year = @last_year_trends['value'][offense.id.to_s] %>
       
-        <tr>
-          <th>
-            <%= link_to offense_url(offense) do %>
-            <span class="badge" data-code="<%= offense.type_code %>">E</span><%= offense.name %>
-            <% end %>
-          </th>
-          <td><%= number_with_delimiter this_year.to_i %></td>
-          <td><%= number_with_delimiter last_year.to_i %></td>
-          <td><%= percent_change_from(this_year, last_year) %></td>
-        </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
+          <tr>
+            <th>
+              <%= link_to offense_url(offense) do %>
+              <span class="badge" data-code="<%= offense.type_code %>">E</span><%= offense.name %>
+              <% end %>
+            </th>
+            <td><%= number_with_delimiter this_year.to_i %></td>
+            <td><%= number_with_delimiter last_year.to_i %></td>
+            <td><%= percent_change_from(this_year, last_year) %></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
     <% end %>
   </div>
 </section>
