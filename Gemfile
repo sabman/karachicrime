@@ -21,6 +21,7 @@ gem 'twilio-rb', '1.0beta', :require => 'twilio'
 gem 'rails_config'
 gem 'sms_fu'
 gem 'pony'
+gem 'typhoeus'
 
 group :development, :test do
   # gem 'wikipedia-client'
