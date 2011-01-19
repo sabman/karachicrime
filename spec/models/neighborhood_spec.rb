@@ -17,17 +17,17 @@ describe Neighborhood do
     @neighborhood.demographics.should == []
   end
   
-  it "should only fetch portland neighborhoods" do
-    Factory.create(:neighborhood, :portland => false)
-    Factory.create(:neighborhood, :portland => false)
+  it "should only fetch karachi neighborhoods" do
+    Factory.create(:neighborhood, :karachi => false)
+    Factory.create(:neighborhood, :karachi => false)
     Factory.create(:neighborhood)
     Factory.create(:neighborhood)
     Factory.create(:neighborhood)
     
-    nhoods = Neighborhood.portland_only.all
+    nhoods = Neighborhood.karachi_only.all
     nhoods.count.should == 4
     nhoods.each do |nh|
-      nh.portland.should == true
+      nh.karachi.should == true
     end
   end
   

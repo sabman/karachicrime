@@ -15,7 +15,7 @@ end
 Factory.define :neighborhood do |n|
   n.sequence(:name) {|i| "Karachi #{i}" }
   n.permalink {|n| "#{n.name.parameterize}" }
-  n.portland true
+  n.karachi true
   n.geo 'type' => 'Polygon', 'coordinates' => []
   n.properties {|n| {"OBJECTID"=>86.0, "PERIMETER"=>44728.800781, "ASSN_"=>0.0, "ASSN_ID"=>0.0, "NAME"=> n.name, "COMMPLAN"=>"", "SHARED"=>"", "COALIT"=>"SWNI", "CHECK_"=>"y", "HORZ_VERT"=>"VERT"}}
   n.after_build {|n| 5.times { n.crimes << Factory.build(:crime) } }  

@@ -18,7 +18,7 @@
     <section class="letter-group">
       <h2 class="ltr" id="<%= letter %>"><%= letter %></h2>
       <% neighborhoods.each do |nh| %>
-        <% if nh.portland? && !nh.permalink.empty? %>
+        <% if nh.karachi? && !nh.permalink.empty? %>
           <div class="txt box summary">
             <h2>
               <%= link_to nh.name, neighborhood_path(nh) %>

@@ -1,0 +1,153 @@
+# To find these used google. Wikimapia search api is not very accurate:
+#   http://www.google.com.au/#sclient=psy&hl=en&q=%22Bin+Qasim+Town%22+site%3Awikimapia.org&aq=f&aqi=&aql=&oq=&pbx=1&fp=d5c8e513f3b74b33
+# Source http://en.wikipedia.org/wiki/List_of_Union_Councils_of_Karachi:
+# http://wikimapia.org/#lat=24.8642442&lon=67.0331669&z=14&l=0&m=t&tag=564&v=9
+# Wikimapia API:
+#   http://api.wikimapia.org/?function=object&key=‹key›&id=‹id›
+
+
+
+towns:
+  Baldia Town:
+    wikimapia_id: 6463110
+    union councils:
+      - Gulshan-e-Ghazi
+      - Ittehad Town
+      - Islam Nagar
+      - Nai Abadi
+      - Saeedabad
+      - Muslim Mujahid Colony
+      - Muhajir Camp
+      - Rasheedabad
+
+  Bin Qasim Town:
+    wikimapia_id: 1830167
+    union councils:
+      - Ibrahim Hyderi
+      - Rehri
+      - Cattle Colony
+      - Qaidabad
+      - Landhi Colony
+      - Gulshan-e-Hadeed
+      - Gaghar
+
+  Gadap Town:
+    wikimapia_id: 3675595
+    wikipedia_url: http://en.wikipedia.org/wiki/Gadap_Town
+    union councils:
+      - Darsano Chana
+      - Gadap
+      - Gujro
+      - Manghopir
+      - Maymarabad
+      - Murad Memon Goth
+      - Songal
+      - Yousuf Goth
+
+  Gulberg Town:
+    wikimapia_id: 935041
+    wikipedia_url: "http://en.wikipedia.org/wiki/Gulberg_Town,_Karachi"
+    union councils:
+      - Aisha Manzil
+      - Ancholi
+      - Azizabad
+      - Karimabad
+      - Shafiq Mill Colony
+      - Naseerabad
+      - Water Pump
+      - Yaseenabad
+
+  Gulshan Town:
+    wikimapia_id: 6624688
+    wikipedia_url: http://en.wikipedia.org/wiki/Gulshan_Town
+    union councils:
+      - Civic Centre
+      - Delhi Mercantile Society
+      - Essa Nagri
+      - Gillani Railway Station
+      - Gulshan-e-Iqbal I
+      - Gulshan-e-Iqbal II
+      - Gulzar-e-Hijri
+      - Jamali Colony
+      - Metroville Colony
+      - Pehlwan Goth
+      - P.I.B. Colony
+      - Safooran Goth
+      - Shanti Naga
+
+  Jamshed Town:
+    wikimapia_id: 11051890
+    wikipedia_url: http://en.wikipedia.org/wiki/Jamshed_Town
+    union councils:
+      - Akhtar Colony
+      - Azam Basti
+      - Central Jacob Lines
+      - Chanesar Goth
+      - Garden East
+      - Jamshed Quarters
+      - Jut Line
+      - Mahmudabad
+      - Manzoor Colony
+      - Pakistan Quarters
+      - P.E.C.H.S.
+      - P.E.C.H.S. II
+      - Soldier Bazar
+
+  Kiamari Town:
+    wikimapia_id: 9446140
+    union councils:
+
+  Korangi Town:
+    wikimapia_id: 9459243
+    wikipedia_url:
+    union councils:
+
+  Landhi Town:
+    wikimapia_id: 9498340 
+    wikipedia_url:
+    union councils:
+
+  Liaquatabad Town:
+    wikimapia_id: 11059541
+    wikipedia_url:
+    union councils:
+
+  Lyari Town:
+    wikimapia_id: 2665122
+    wikipedia_url:
+    union councils:
+
+  Malir Town:
+    wikimapia_id: 1820779
+    wikipedia_url:
+    union councils:
+
+  New Karachi Town:
+    wikimapia_id: 1655854
+    wikipedia_url:
+    union councils:
+
+  North Nazimabad Town:
+    wikimapia_id: 219314
+    wikipedia_url:
+    union councils:
+
+  Orangi Town:
+    wikimapia_id: 928840
+    wikipedia_url:
+    union councils:
+
+  Saddar Town:
+    wikimapia_id: 11069545
+    wikipedia_url:
+    union councils:
+
+  Shah Faisal Town:
+    wikimapia_id: 9588591
+    wikipedia_url:
+    union councils:
+
+  S.I.T.E. Town (Sindh Industrial & Trading Estate):
+    wikimapia_id: 820795
+    wikipedia_url:
+    union councils:

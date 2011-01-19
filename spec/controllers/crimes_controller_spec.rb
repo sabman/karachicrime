@@ -24,7 +24,7 @@ describe CrimesController do
   
   context 'show' do
     it "should respond to geojson given a neighborhood id" do
-      get :show, :neighborhood_id => 'portland-0', :format => :geojson
+      get :show, :neighborhood_id => 'karachi-0', :format => :geojson
       response.should be_success
     end
   end

@@ -3,7 +3,6 @@ class Neighborhood
 
   key :name
   key :permalink
-  key :portland, Boolean, :default => false
   key :karachi, Boolean, :default => true
   key :geo, Hash
   key :loc, Hash, :default => {'lat' => 0, 'lon' => 0}
@@ -17,8 +16,7 @@ class Neighborhood
 
   add_concerns :reporting
 
-  scope :portland_only, where(:portland => true)
-  scope :portland_only, where(:karachi => true)
+  scope :karachi_only, where(:karachi => true)
 
   def to_param
     permalink

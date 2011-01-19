@@ -15,6 +15,7 @@ namespace :migrations do
     nhoods.each do |row|
       puts "------------------------------------------------------------"
 
+      # search for neighborhood's wikipedia page
       wikipedia_pageid = {}
       wikipage = Wikipedia.find(row['name'], :prop => 'info')
       if wikipage.title
@@ -24,6 +25,7 @@ namespace :migrations do
 
       results = JSON.parse(open("http://ws.geonames.org/searchJSON?q=#{CGI::escape(row['name'])}&maxRows=10").read)
 
+      # search for neighborhood's geonames page
       loc = {}
       if results['geonames'].any?
         results['geonames'].each do |gn|
@@ -171,14 +173,14 @@ namespace :migrations do
     end
   end
   
-  desc 'Flag non-portland neighborhoods'
-  task :four_flag_non_portland_neighborhoods => :environment do
+  desc 'Flag non-karachi neighborhoods'
+  task :four_flag_non_karachi_neighborhoods => :environment do
     permalinks = NON_PDX_NHOODS.collect {|n| n.parameterize }
     Neighborhood.all.each do |nh|
       if permalinks.include?(nh.permalink)
-        nh.portland = false
+        nh.karachi = false
       else
-        nh.portland = true
+        nh.karachi = true
       end
       nh.save
     end
