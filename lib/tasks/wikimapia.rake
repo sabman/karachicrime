@@ -19,8 +19,8 @@ namespace :wikimapia do
       # pp url
       response = Typhoeus::Request.get(url)
       puts response.body
-      # File.open(RAW_JSON, 'w+'){ |f| f.puts(response.body) } 
 
+      # File.open(RAW_JSON, 'w+'){ |f| f.puts(response.body) } 
       # str = File.open(RAW_JSON, 'r').read
       # pp str
       # hash = JSON.parse(File.open(RAW_JSON, 'r').read)
