@@ -35,17 +35,23 @@ namespace :wikimapia do
     str = File.open(jsonfile, 'r').read
     hash = JSON.parse(str)
     geojson_hash              = WikimapiaHelper::geojson_hash
-    feature                   = WikimapiaHelper::geojson_hash["features"][0]
-    geojson_hash["features"]  = []
     features                  = []
     hash.each do |rec|
+      feature = { "type"            => "Feature",
+                  "properties"      => nil,
+                  "geometry"        => {
+                      "type"        => "Polygon",
+                      "coordinates" => []
+                    }
+                  }
       feature["geometry"]["coordinates"] = [rec["polygon"].collect{|xy| [xy["x"], xy["y"]] }]
       feature["properties"] = {
+        "title"         => rec["title"],
         "wikimapia_id"  => rec["id"],
         "description"   => rec["description"],
         "wikipedia_url" => rec["wikipedia"]
       }
-      features << feature
+      features.push(feature)
     end
     geojson_hash["features"] = features
     puts geojson_hash.to_json
