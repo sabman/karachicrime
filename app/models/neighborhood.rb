@@ -25,9 +25,7 @@ class Neighborhood
   def as_geojson(options = {})
     {
       :id => id,
-      :geometry => (geo ||
-        {:geometry => { :type => 'Point', :coordinates => [loc['lon'], loca['lat']] }}
-      ),
+      :geometry => geo,
       :properties => properties.merge(:name => name, :permalink => permalink)
     }
   end

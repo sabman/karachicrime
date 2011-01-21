@@ -28,9 +28,9 @@ class NeighborhoodsController < ApplicationController
   end
   
   def show
-    @this_year_start = Time.now.beginning_of_year
-    @last_year_start = @this_year_start - 1.year
-    
+    @this_year_start = Time.now.beginning_of_year + 1
+    @last_year_start = @this_year_start - 1.year + 1
+
     @offenses = Offense.sort([['type.order', 1], ['order', 1]]).all.group_by(&:type)    
     @neighborhood = Neighborhood.first(:permalink => params[:id])
 
@@ -43,8 +43,12 @@ class NeighborhoodsController < ApplicationController
         @this_years_total = @neighborhood.crimes.between(@this_year_start, (Time.now - 1.week)).count
         @last_years_total = @neighborhood.crimes.between(@last_year_start, (Time.now - 1.week) - 1.year).count
 
-        @this_year_trends = MongoMapper.database["neighborhood_totals_for_#{@this_year_start.year}"].find_one(:_id => @neighborhood.id)          
-        @last_year_trends = MongoMapper.database["neighborhood_totals_for_#{@last_year_start.year}"].find_one(:_id => @neighborhood.id)
+        # FIXME: the year is off by one:
+        # @this_year_trends = MongoMapper.database["neighborhood_totals_for_#{@this_year_start.year}"].find_one(@neighborhood.id)
+        # @last_year_trends = MongoMapper.database["neighborhood_totals_for_#{@last_year_start.year}"].find_one(@neighborhood.id)
+        @this_year_trends = MongoMapper.database["neighborhood_totals_for_2011"].find_one(@neighborhood.id)
+        @last_year_trends = MongoMapper.database["neighborhood_totals_for_2010"].find_one(@neighborhood.id)
+
       end
       wants.geojson do
         geo = @neighborhood

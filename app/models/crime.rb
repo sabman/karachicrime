@@ -10,6 +10,7 @@ class Crime
   key :union_council, String
   key :loc, Hash, :default => {'lat' => 0, 'lon' => 0}
   key :code, String
+  key :fake, Boolean
   timestamps!
   
   belongs_to :offense
@@ -18,9 +19,11 @@ class Crime
   add_concerns :reporting
   
   scope :between, lambda {|from, to| where(:reported_at.gte => from, :reported_at.lt => to) }
-    
+
+  scope :except_fake, lambda{where(:fake.ne => true)}
+
   scope :in_the_past, lambda {|time|   
-    where(:reported_at.gte => Time.zone.now.change(:hour => 0) - time, 
+    where(:reported_at.gte => Time.zone.now.change(:hour => 0) - time,
           :reported_at.lt => Time.zone.now).sort(:reported_at.desc)}
   
   def as_geojson(options = {})

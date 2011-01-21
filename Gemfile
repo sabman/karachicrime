@@ -22,6 +22,7 @@ gem 'rails_config'
 gem 'sms_fu'
 gem 'pony'
 gem 'typhoeus'
+gem 'nofxx-georuby', '1.9.0', :require =>  'geo_ruby'
 
 group :development, :test do
   # gem 'wikipedia-client'
@@ -32,6 +33,7 @@ group :development, :test do
   gem 'rspec', '2.1.0'
   gem 'rspec-rails', '2.1.0'
   gem 'rails3-generators', :git => 'git://github.com/indirect/rails3-generators.git'
+  # gem 'ruby-debug'
 end  
 
 group :development do

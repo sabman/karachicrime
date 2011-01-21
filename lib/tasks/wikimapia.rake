@@ -1,3 +1,4 @@
+# TODO: use the names from the yml to load
 require 'rubygems'
 require 'pp'
 require 'json'
@@ -42,8 +43,8 @@ namespace :wikimapia do
                   "geometry"        => {
                       "type"        => "Polygon",
                       "coordinates" => []
-                    }
                   }
+                }
       feature["geometry"]["coordinates"] = [rec["polygon"].collect{|xy| [xy["x"], xy["y"]] }]
       feature["properties"] = {
         "title"         => rec["title"],

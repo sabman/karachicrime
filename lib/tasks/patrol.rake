@@ -3,6 +3,7 @@ require 'pp'
 require 'csv'
 require 'name_map'
 require "#{Rails.root}/lib/time"
+require 'geo_ruby'
 
 namespace :crime do
   namespace :karachi do
@@ -13,22 +14,28 @@ namespace :crime do
       puts "make sure you have migrated neighbourhoods: rake migrations:karachi_neighborhood_names"
       offenses = Offense.all
       Neighborhood.all.each do |n| ##
-        noise = lambda{rand*0.00001 * [1,-1][rand(2)]}
-        unless(n.loc['lat']==0)
+        noise = lambda{rand*0.000005 * [1,-1][rand(2)]}
+        geom = GeoRuby::SimpleFeatures::Geometry.from_geojson(n.geo.to_json)
+        puts "\n******* #{n.id} - #{n.name} boundry geometry not parsable as geojson\n" if geom.nil?
+        center = geom.envelope.center
+        unless(geom.nil?)
           10.times do
             o = offenses[rand(offenses.size)]
             attrs = {
               'loc' => {
-                'lat' => n.loc['lat']+noise.call,
-                'lon' => n.loc['lon']+noise.call 
+                'lat' => center.y+noise.call,
+                'lon' => center.x+noise.call
               },
               'neighborhood' => n,
               'offense'      => o,
               'code'         => o.code,
-              'reported_at'  => Time.random
+              'fake'         => true,
+              'reported_at'  => Time.random([2, 1][rand(2)] - rand)
             }
+
             c = Crime.new(attrs)
             c.save
+            pp c.attributes
           end
         end
       end
@@ -39,7 +46,7 @@ namespace :crime do
   namespace :reports do
     desc 'Run Weekly Crime Totals For last year & this year'
     task :weekly_crime_totals => :environment do
-      [(Time.now - 1.year).year, Time.now.year].each do |year|
+      [(Time.now - 2.year).year, (Time.now - 1.year).year, Time.now.year].each do |year|
         start = Time.parse("01/01/#{year}")
         Crime.weekly_totals_between(start, start.end_of_year)
         puts "[#{Time.zone.now}] Calculated #{year} weekly crime totals"
@@ -49,6 +56,8 @@ namespace :crime do
     desc 'Run YTD Offense Summaries'
     task :ytd_offense_summaries => :environment do
       Offense.summaries_for_the_past(Time.now.beginning_of_year.to_i)
+      Offense.summaries_for_the_past(Time.now.beginning_of_year.to_i-1)
+      Offense.summaries_for_the_past(Time.now.beginning_of_year.to_i-2)
       puts "[#{Time.zone.now}] Calculated offenses summaries"
     end
     
@@ -56,8 +65,12 @@ namespace :crime do
     task :neighborhood_offense_totals => :environment do
       # Crimes trickle in over a course of two weeks, making up to the day reporting slighly inaccurate 
       # when making historical comparisons, so we trim off two weeks to account for this volatility
-      Neighborhood.offense_totals_between(Time.now.beginning_of_year, Time.now - 2.weeks)
-      Neighborhood.offense_totals_between(Time.now.beginning_of_year - 1.year, (Time.now - 2.weeks) - 1.year)
+      threshold = Time.now.yday > 14 ? 2.weeks : 0.days
+      [0,1,2].each do |since|
+        Neighborhood.offense_totals_between(Time.now.beginning_of_year - since.year, (Time.now - threshold) - since.year)
+        puts "Calculated neighborhood statistics: #{(Time.now.beginning_of_year - since.year)} - #{(Time.now - threshold) - since.year}"
+      end
+      puts "[#{Time.zone.now}] Calculated neighborhood statistics"
     end
   end
   
