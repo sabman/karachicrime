@@ -1,0 +1,25 @@
+name
+Lyari Town
+Saddar Town
+Jamshed Town
+Gadap Town
+SITE Town
+Kiamari Town
+Shah Faisal Town
+Korangi Town
+Landhi Town
+Bin Qasim Town
+Malir Town
+Gulshan Town
+Liaquatabad Town
+North Nazimabad Town
+Gulberg Town
+New Karachi Town
+Orangi Town
+Baldia Town
+Karachi Cantonment
+Clifton Cantonment
+Korangi Creek Cantonment
+Faisal Cantonment
+Malir Cantonment
+Manora Cantonment

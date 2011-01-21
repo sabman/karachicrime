@@ -11,40 +11,13 @@ namespace :migrations do
   task :karachi_neighborhood_names => :environment do
     require "#{Rails.root}/vendor/plugins/wikipedia-client/lib/wikipedia"
 
-    nhoods = CSV.read('db/data/karachi_neighbourhoods.txt', :headers => true)
+    nhoods = CSV.read('db/data/karachi_towns.txt', :headers => true)
     nhoods.each do |row|
       puts "------------------------------------------------------------"
-
-      # search for neighborhood's wikipedia page
-      wikipedia_pageid = {}
-      wikipage = Wikipedia.find(row['name'], :prop => 'info')
-      if wikipage.title
-        puts "Found a wikipedia page: #{wikipage.title}"
-        wikipedia_pageid = {:wikipedia_pageid => wikipage.page['pageid']}
-      end
-
-      results = JSON.parse(open("http://ws.geonames.org/searchJSON?q=#{CGI::escape(row['name'])}&maxRows=10").read)
-
-      # search for neighborhood's geonames page
-      loc = {}
-      if results['geonames'].any?
-        results['geonames'].each do |gn|
-          if gn['adminName1'] =~ /sindh/i
-            loc = {:loc => {:lon => gn['lng'], :lat => gn['lat'] }}
-            puts "Found a geonames entry: #{gn['name']}" if loc.any?
-            break
-          end
-        end
-      end
-
       attrs = {:name => row['name'].titlecase, :permalink => row['name'].parameterize}
-                .merge(loc)
-                .merge(wikipedia_pageid)
       pp attrs
-
       n = Neighborhood.first_or_new(:name => row['name'].titlecase)
       n.update_attributes(attrs)
-
       puts "saving #{n.name}..." ; n.save!
       puts "------------------------------------------------------------"
     end
@@ -52,25 +25,18 @@ namespace :migrations do
 
   desc 'Convert neighborhood names to normalized names and add geo data'
   task :one_normalize_neighborhood_names => :environment do
-    nhoods = JSON.parse(File.read(File.join(Rails.root, 'db', 'data', 'neighborhoods.json')))
-    
+    nhoods = JSON.parse(File.read(File.join(Rails.root, 'db', 'data', 'karachi_towns.json')))
+    puts nhoods['features']
     Neighborhood.all.each do |n|
+      puts "\n>>>>>>>>>>> #{n.name}"
       name = n.name
-      cur_name = n.name.downcase
-      
-      nhood = nhoods['features'].detect { |f| f['properties']['NAME'].downcase == cur_name }
-      
-      if name == 'Mt. Scott Arleta'
-        nhood = nhoods['features'].detect { |f| f['properties']['NAME'] == 'MT. SCOTT-ARLETA' }
-      end
-      
-      if nhood.nil?        
-        name = PDX_NHOODS_NAME_MAP[n.name]        
-        unless name.nil?
-          nhood = nhoods['features'].detect { |f| f['properties']['NAME'].downcase == name.downcase }
-        else
-          # hrm
-        end
+      cur_name = n.name.downcase.strip
+
+      nhood = nhoods['features'].detect { |f| f['properties']['title'].downcase.strip == cur_name }
+      puts "\n  >>>>>>>>>>> #{nhood.class}"
+
+      if nhood.nil? 
+        puts "\n    >>>>>>>>>>> #{nhood['properties']['title'].downcase} not found!"
       end
       
       unless nhood.nil?        
@@ -78,6 +44,7 @@ namespace :migrations do
         n.geo = nhood['geometry']
         n.properties = nhood['properties']
         n.save
+        puts "\n    >>>>>>>>>>> #{nhood['properties']['title'].downcase} saved!"
       end
     end
   end
