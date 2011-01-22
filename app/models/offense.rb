@@ -7,7 +7,7 @@ class Offense
   key :order, Integer
   key :type, Hash
   key :code
-  timestamps!     
+  timestamps!
 
   many :crimes
   

@@ -8,7 +8,11 @@ rake pp:import - Imports new crimes (probably around 59k on first import)
 
 ## KarachiCrime Development Setup
 
-First import the town boundaries:
+Seed the offense names
+
+    rake db:seed
+
+Import the town boundaries:
 
     rake migrations:karachi_neighborhood_names && rake migrations:one_normalize_neighborhood_names
 

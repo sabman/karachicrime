@@ -3,12 +3,17 @@
   <div class="box txt">
     <h1>About Karachi Crime</h1>
     <p>Karachi Crime is an Open Source effort to document and display crime in neighborhoods across Karachi, Pakistan. The code base was forked form the <%= link_to "PortlandCrime", "https://github.com/Caged/portlandcrime" %> project by the awesome <%= link_to "Justin Palmer", "http://labratrevenge.com/" %></p>
-      
+
     <h2>Where does your data come from?</h2>
-    <p>All of the crime data comes from repots by citizens and civic society group</a>.</p>
-    
+    <p>All of the crime data comes from repots by citizens and civic society group.</p>
+    <p>At the moment the data on this site is <strong>fake</strong>. Currently we are seeking expressions of interest from local civic society groups who are interested in partnering to provide local reporting. Feel free to contact us at <%= mail_to('shoaib@nomad-labs.com', 'shoaib@nomad-labs.com', :encode => :hex) %> or <%= mail_to('shoaib@nomad-labs.com', 'info@nomad-labs.com', :encode => :hex) %>.</p>
+
+    <h2>Can I report crime data:</h2>
+    <p>Yes you can SMS us the report of the crime at: <strong>+447786200690</strong>. The first word of the message must be <strong>CRIME</strong>. This should be followed by crime type, neighbourhood and then any further description. We will verify the report before its published.</p>
+
     <h2>How accurate is the data?</h2>
     <p>All our data is taken directly from the reports from our partners and users and aggregated to the level of Towns.  The data on this site is only as accurate as the reports. Some of the data doesn't included a geolocation so you will probably find instances with the number of crimes do not match up with the points on the maps.</p>
+    <p>In the future we plan to support a local SMS number. We are currently seeking expressions of interest from organisations willing to sponsor us. Please email us at <%= mail_to('shoaib@nomad-labs.com', 'shoaib@nomad-labs.com', :encode => :hex) %> or <%= mail_to('shoaib@nomad-labs.com', 'info@nomad-labs.com', :encode => :hex) %> </p>
     
     <h2>Can I help?</h2>
     <p><strong>Yes!</strong> This project is Open Source.  Anyone can help.  While the project is still small, I encourage you to 
