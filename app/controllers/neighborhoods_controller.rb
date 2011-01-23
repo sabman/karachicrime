@@ -36,7 +36,8 @@ class NeighborhoodsController < ApplicationController
 
     respond_to do |wants|
       wants.html do
-        @crimes = @neighborhood.crimes.limit(5).sort(:reported_at => -1).all
+        #@crimes = @neighborhood.crimes.limit(5).sort(:reported_at => -1).all
+        @crimes = @neighborhood.crimes.limit(5).all
         
         # Based on yearly trends, there is a window of a couple weeks for
         # crimes to be fully reported.
