@@ -57,4 +57,12 @@ class NeighborhoodsController < ApplicationController
       end
     end
   end
+
+  def autocomplete_name
+    q = /^.*#{params[:q]}.*$/i
+    @neighborhoods = Neighborhood.all(:conditions => {:name => q})
+    respond_to do |wants|
+      wants.json { render :json => @neighborhoods.as_json }
+    end
+  end
 end

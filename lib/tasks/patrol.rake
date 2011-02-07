@@ -14,7 +14,7 @@ namespace :crime do
       puts "make sure you have migrated neighbourhoods: rake migrations:karachi_neighborhood_names"
       offenses = Offense.all
       Neighborhood.all.each do |n| ##
-        noise = lambda{rand*0.000005 * [1,-1][rand(2)]}
+        noise = lambda{rand*0.00001 * [1,-1][rand(2)]}
         geom = GeoRuby::SimpleFeatures::Geometry.from_geojson(n.geo.to_json)
         puts "\n******* #{n.id} - #{n.name} boundry geometry not parsable as geojson\n" if geom.nil?
         center = geom.envelope.center
@@ -30,12 +30,13 @@ namespace :crime do
               'offense'      => o,
               'code'         => o.code,
               'fake'         => true,
-              'reported_at'  => Time.random([2, 1][rand(2)] - rand)
+              'reported_at'  => Time.random([3,2,1,0][rand(4)] - rand)
             }
 
             c = Crime.new(attrs)
             c.save
-            pp c.attributes
+            # pp c.attributes['loc']
+            # pp c.attributes['reported_at']
           end
         end
       end

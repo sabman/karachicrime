@@ -1131,3 +1131,38 @@ ul.times li span.percent {
   top: 24px;
 }
 /* @end */
+
+/* Code */
+
+pre { 
+  position: relative; 
+  background: #333; 
+  color: white; 
+  font-family: Courier, MonoSpace; 
+  line-height: 1.8; 
+  -moz-border-radius: 8px; 
+  -webkit-border-radius: 8px; 
+  border-radius: 8px; 
+  font-size: 16px; 
+  padding: 10px; 
+  margin: 0 0 20px 0; 
+  overflow: auto; 
+}
+pre code { 
+  padding: 0; /* white-space: pre; */ 
+  color: white; 
+  background: #333; 
+}
+
+pre:after { 
+  content: attr(rel); 
+  position: absolute; 
+  font-size: 30px; 
+  top: 22px; 
+  line-height: 0; 
+  right: 12px; 
+  color: #999; 
+  font-family: "tandelle-1","tandelle-2", HelveticaNeue, Helvetica, Arial, serif; 
+}
+
+/* end */

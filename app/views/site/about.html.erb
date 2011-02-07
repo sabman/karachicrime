@@ -2,22 +2,36 @@
 <section id="main">
   <div class="box txt">
     <h1>About Karachi Crime</h1>
-    <p>Karachi Crime is an Open Source effort to document and display crime in neighborhoods across Karachi, Pakistan. The code base was forked form the <%= link_to "PortlandCrime", "https://github.com/Caged/portlandcrime" %> project by the awesome <%= link_to "Justin Palmer", "http://labratrevenge.com/" %></p>
+    <p>Karachi Crime is an Open Source effort to document and display crime in neighborhoods across Karachi, Pakistan. The code base was forked form the <%= link_to "PortlandCrime", "https://github.com/Caged/portlandcrime", :target => "_blank" %> project by the awesome <%= link_to "Justin Palmer", "http://labratrevenge.com/", :target => "_blank" %>.</p>
+    <h1>Who is behind Karachi Crime</h1>
+    <p>The project is currently being developed throught sponsorship from <%= link_to "Nomad Labs", "http://nomad-labs.com", :target => "_blank" %>. You can contact the developer direct via <%= link_to 'twitter', 'http://twitter.com/sabman', :target => "_blank" %> or email at <%= mail_to('shoaib@nomad-labs.com', 'shoaib@nomad-labs.com', :encode => :hex) %> </p>
+
+    <h1>What are the Goals of Karachi Crime?</h1>
+    <p>1. It should allow citizens and civic society groups to report crime in order to spur public authorities into action. This should be done in real-time. That is as soon as the crime is reported from a "varified source" it should appear on the map.  Anyone with authority should be able to subscribe to the alerts.
+    </p>
+    <p>2. Allow public authorise (police, dept. of justice, etc) to get detailed data about what, when, and where.</p>
+    <p>3. Allow researchers and spatial analysts to perform fine scale geographic and temporal analysis of crime in Karachi and thus create detailed reports to identify hotspots etc that can be given back to those who have the power to do something to reduce crime.</p>
+    <p>4. Allow for integration with grass root public safety organisations (e.g. Citizen Police Liaison Committee) and projects possibly in real-time and without human intervention.</p>
+    <p>5. Allow the creation of future services such as "Crime Near Me" where people living in a neighbourhood can get SMS alerts if there is a crime reported near them. Similar services can exist for police to use in addition to their existing dispatch protocols. Develop an AI heuristic/algorithm to judge validity of incidents based on independence of sources or reputation of the reporter.</p>
+    <p>6. Be open to other suggestions based on priorities of those affected most by crime in Karachi.</p>
 
     <h2>Where does your data come from?</h2>
     <p>All of the crime data comes from repots by citizens and civic society group.</p>
     <p>At the moment the data on this site is <strong>fake</strong>. Currently we are seeking expressions of interest from local civic society groups who are interested in partnering to provide local reporting. Feel free to contact us at <%= mail_to('shoaib@nomad-labs.com', 'shoaib@nomad-labs.com', :encode => :hex) %> or <%= mail_to('shoaib@nomad-labs.com', 'info@nomad-labs.com', :encode => :hex) %>.</p>
 
     <h2>Can I report crime data:</h2>
-    <p>Yes you can SMS us the report of the crime at: <strong>+447786200690</strong>. The first word of the message must be <strong>CRIME</strong>. This should be followed by crime type, neighbourhood and then any further description. We will verify the report before its published.</p>
+    <p>Yes you can SMS us the report of the crime at: <strong>+447786200690</strong>. The first word of the message must be <strong>CRIME</strong>. This should be followed by crime type, neighbourhood and then any further description. We will verify the report before its published. Here is an example of a valid report:</p>
+    <pre><code>crime clifton vandalism today at noon</code></pre>
+    <p>It can also be shortened to </p>
+    <pre><code>crime clf van today at noon</code></pre>
 
     <h2>How accurate is the data?</h2>
-    <p>All our data is taken directly from the reports from our partners and users and aggregated to the level of Towns.  The data on this site is only as accurate as the reports. Some of the data doesn't included a geolocation so you will probably find instances with the number of crimes do not match up with the points on the maps.</p>
+    <p>Currently data on this site is fake. In the future all our data will be taken directly from the reports from our partners and users and aggregated to the level of Towns.  The data on this site is only as accurate as the reports. Some of the data doesn't included a geolocation so you will probably find instances with the number of crimes do not match up with the points on the maps.</p>
     <p>In the future we plan to support a local SMS number. We are currently seeking expressions of interest from organisations willing to sponsor us. Please email us at <%= mail_to('shoaib@nomad-labs.com', 'shoaib@nomad-labs.com', :encode => :hex) %> or <%= mail_to('shoaib@nomad-labs.com', 'info@nomad-labs.com', :encode => :hex) %> </p>
     
     <h2>Can I help?</h2>
     <p><strong>Yes!</strong> This project is Open Source.  Anyone can help.  While the project is still small, I encourage you to 
-      <%= mail_to('shoaib@nomad-labs.com', 'email me', :encode => :hex) %> with any ideas you have in mind.  You can also <%= link_to 'follow me on twitter', 'http://twitter.com/sabman' %></p>
+      <%= mail_to('shoaib@nomad-labs.com', 'email me', :encode => :hex) %> with any ideas you have in mind.  You can also <%= link_to 'follow me on twitter', 'http://twitter.com/sabman', :target => "_blank" %></p>
   </div>
 </section>
 

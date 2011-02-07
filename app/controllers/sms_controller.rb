@@ -13,6 +13,6 @@ class SmsController < ApplicationController
   end
 
   def last
-    render :json => Sms.all.last
+    render :json => Sms.all.last.as_json
   end
 end

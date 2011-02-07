@@ -1,5 +1,6 @@
 Pdxpatrol::Application.routes.draw do
   resources :neighborhoods do
+    get :autocomplete_name, :on => :collection
     resource :crimes
   end
   resource :crimes, :only => [:new, :create]

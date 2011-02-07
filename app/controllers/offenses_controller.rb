@@ -28,7 +28,7 @@ class OffensesController < ApplicationController
     q = /^.*#{params[:q]}.*$/i
     @offenses = Offense.all(:conditions => {:name => q})
     respond_to do |wants|
-      wants.json { render :json => @offenses }
+      wants.json { render :json => @offenses.as_json }
     end
   end
 end
