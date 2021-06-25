@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,7 +29,7 @@ group :development, :test do
   # gem 'kschrader-wikipedia-api'
   gem 'hpricot'
   gem 'geonames'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '>= 1.0'
   gem 'rspec', '2.1.0'
   gem 'rspec-rails', '2.1.0'
   gem 'rails3-generators', :git => 'git://github.com/indirect/rails3-generators.git'
@@ -37,5 +37,5 @@ group :development, :test do
 end  
 
 group :development do
-  gem 'jquery-rails'
+  gem 'jquery-rails', '>= 1.0.1'
 end
